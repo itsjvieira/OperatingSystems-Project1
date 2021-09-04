@@ -1,0 +1,14 @@
+CFLAGS = -g -c -Wall -std=gnu99
+
+CircuitRouter-SimpleShell: ../lib/commandlinereader.o ../lib/list.o CircuitRouter-SimpleShell.o
+	gcc ../lib/commandlinereader.o ../lib/list.o CircuitRouter-SimpleShell.o -lm -o CircuitRouter-SimpleShell
+	make -f makefile_seq
+
+CircuitRouter-SimpleShell.o: ../lib/commandlinereader.h ../lib/list.h  CircuitRouter-SimpleShell.c
+	gcc $(CFLAGS) CircuitRouter-SimpleShell.c -o CircuitRouter-SimpleShell.o
+
+../lib/commandlinereader.o: ../lib/commandlinereader.c
+	gcc $(CFLAGS) ../lib/commandlinereader.c -o ../lib/commandlinereader.o
+
+../lib/list.o: ../lib/list.c ../lib/types.h
+	gcc $(CFLAGS) ../lib/list.c -o ../lib/list.o
